@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Welcome to Firebase Hosting</title>
+    <script defer src="/__/firebase/7.1.0/firebase-app.js"></script>
+    <script defer src="/__/firebase/7.1.0/firebase-database.js"></script>
+    <script defer src="/__/firebase/7.1.0/firebase-auth.js"></script>
+    <script defer src="/__/firebase/init.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+<h2>People Online:</h2>
+<ul id="people"></ul>
+<div id="authstuff">
+
+</div>
+<div id="namestuff">
+    <input type="text" id="MyUserName" placeholder="Hi, my Username is" />
+    <button type="button" id="join">Click to join</button>
+    <button type="button" id="leave">Click to leave</button>
+    <button type="button" id="edit">Click to change your name</button>
+</div>
+<script>
+    $(document).ready(function(){
+        var theDB = firebase.database();
+        var provider = new firebase.auth.GoogleAuthProvider();
+        firebase.auth().signInWithPopup(provider).then(function(result) {
+            // This gives you a Google Access Token. You can use it to access the Google API.
+            var token = result.credential.accessToken;
+            // The signed-in user info.
+            var user = result.user;
+            console.log(user);
+            $("#authstuff").html(`<h1>Welcome ${user.displayName}</h1><p><img src="${user.photoURL}"></p>`);
+        }).catch(function(error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            // The email of the user's account used.
+            var email = error.email;
+            // The firebase.auth.AuthCredential type that was used.
+            var credential = error.credential;
+        });
+        //This is a silly andy trick, ignore or not
+        var myid = "";
+        if(localStorage) {
+            if(!localStorage.getItem("sillyID")) {
+                myid = "id"+Math.floor(Math.random()*500000000);
+                localStorage.setItem("sillyID", myid);
+            } else {
+                myid = localStorage.getItem("sillyID");
+            }
+        }
+
+
+        //here is the interesting stuff
+        $("#join").click(function(){ //CREATE
+            var name = $("#myname").val();
+            if (!!name){
+                theDB.ref().child("people/"+myid).set({name: name, online: true});
+            }
+        });
+        $("#leave").click(function(){ //DESTROY
+            theDB.ref("people/"+myid).remove();
+        });
+        $("#edit").click(function(){ //UPDATE
+            var name = $("#myname").val();
+            if (!!name){
+                theDB.ref("people").child(myid).update({name: name});
+            }
+        });
+
+        theDB.ref("people").on("value", function(snap){
+            $("#people").empty();
+            var everyone = snap.val();
+            for(var id in everyone){
+                if (everyone.hasOwnProperty(id)){
+                    let yourname = everyone[id].name || "anonymous";
+                    $("#people").append(`<li>${yourname}</li>`);
+                }
+            }
+        });
+    });
+</script>
+</body>
