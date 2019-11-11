@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="70d13c3c-76f4-41d2-9a5f-4f090c6fcff2" name="Default Changelist" comment="nr2">
-      <change afterPath="$PROJECT_DIR$/public/Login.html" afterDir="false" />
+    <list default="true" id="70d13c3c-76f4-41d2-9a5f-4f090c6fcff2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.js" afterDir="false" />
@@ -57,8 +56,17 @@
       <option name="presentableId" value="Default" />
       <updated>1573483581569</updated>
       <workItem from="1573483582677" duration="569000" />
-      <workItem from="1573485471921" duration="9172000" />
+      <workItem from="1573485471921" duration="9259000" />
+      <workItem from="1573500050982" duration="5584000" />
     </task>
+    <task id="LOCAL-00001" summary="nr2">
+      <created>1573494691463</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1573494691463</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -69,7 +77,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
@@ -78,5 +88,17 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="nr2" />
     <option name="LAST_COMMIT_MESSAGE" value="nr2" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/public/Login.html</url>
+          <line>26</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
