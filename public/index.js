@@ -7,17 +7,38 @@ var sampleJSon = {
 var sampleChannel = {
 
         "subComment": [
-            {"content":"1","id":"1","author": "xxx", "date": "timestamp", "votes": "2", "subComment": []},
-            {"content":"2","id":"2","author": "yyy", "date": "timestamp", "votes": "0", "subComment": []},
+            {"content": "1", "id": "1", "author": "xxx", "date": "timestamp", "votes": "2", "subComment": []},
+            {"content": "2", "id": "2", "author": "yyy", "date": "timestamp", "votes": "0", "subComment": []},
             {
-                "content":"3","id":"3", "author": "zzz", "date": "timestamp", "votes": "5", "subComment":
+                "content": "3", "id": "3", "author": "zzz", "date": "timestamp", "votes": "5", "subComment":
                     [
-                        {"content":"3.1","id":"3.1","author": "qqq", "date": "timestamp", "votes": "2", "subComment": []},
-                        {"content":"3.2","id":"3.2","author": "www", "date": "timestamp", "votes": "0", "subComment": []},
-                        {"content":"3.3","id":"3.3","author": "eee", "date": "timestamp", "votes": "5", "subComment": []}
+                        {
+                            "content": "3.1",
+                            "id": "3.1",
+                            "author": "qqq",
+                            "date": "timestamp",
+                            "votes": "2",
+                            "subComment": []
+                        },
+                        {
+                            "content": "3.2",
+                            "id": "3.2",
+                            "author": "www",
+                            "date": "timestamp",
+                            "votes": "0",
+                            "subComment": []
+                        },
+                        {
+                            "content": "3.3",
+                            "id": "3.3",
+                            "author": "eee",
+                            "date": "timestamp",
+                            "votes": "5",
+                            "subComment": []
+                        }
                     ]
             },
-            {"content":"4","id":"4","author": "ttt", "date": "timestamp", "votes": "0", "subComment": []},
+            {"content": "4", "id": "4", "author": "ttt", "date": "timestamp", "votes": "0", "subComment": []},
         ]
 
 
@@ -26,7 +47,7 @@ var sampleChannel = {
 
 var userbool = false;
 $(document).ready(function () {
-    /*firebase.auth().onAuthStateChanged(function (user) {
+    firebase.auth().onAuthStateChanged(function (user) {
         //console.log(user);
         if (user) {
 
@@ -36,15 +57,15 @@ $(document).ready(function () {
 
             logout();
 
-            var name,email;
+            var name, email;
 
             if (user != null) {
-                 name = user.displayName;
-                 email = user.email;
+                name = user.displayName;
+                email = user.email;
 
 
             }
-            $('#LoginCon').append('<p id="userInfo">'+name+' '+email+'</p>');
+            $('#LoginCon').append('<p id="userInfo">' + name + ' ' + email + '</p>');
 
         } else {
             console.log("no user")
@@ -52,12 +73,13 @@ $(document).ready(function () {
             $('#LoginCon').append('<button id="LoginButtonRed"> Login</button>');
             login();
 
-        }*/
+        }
 
-    console.log(sampleJSon);
-    printChannels();
+        console.log(sampleJSon);
+        printChannels();
 
 
+    });
 });
 
 function printChannels() {
@@ -92,7 +114,7 @@ let Channel = function (name) {
 
     this.generateEl();
 };
-let Comment= function (data) {
+let Comment = function (data) {
     this.generateEl = function () {
         this.$comment = $('<div>' + data.content + ' ' + data.author + '</div>')
         let upButton = $('<button class="UpButton">+</button>');
@@ -111,26 +133,27 @@ let Comment= function (data) {
     this.generateEl();
 
 
-
 }
-function goThroughComments(){
+
+function goThroughComments() {
     $('#contentContainer').empty();
     let commentarr = sampleChannel.subComment
     let container = $('#contentContainer');
-    printComments(commentarr,container)
+    printComments(commentarr, container)
 
 }
-function  printComments(commentarr,container) {
+
+function printComments(commentarr, container) {
     console.log(commentarr);
     console.log(container);
     for (let i in commentarr) {
         console.log(commentarr[i].content);
-        let tempComment= new Comment(commentarr[i]);
+        let tempComment = new Comment(commentarr[i]);
         container.append(tempComment.$comment);
-        if(commentarr[i].subComment.length){
+        if (commentarr[i].subComment.length) {
             let container2 = $('<div class="SubComments">' + this.name + '</div>');
             tempComment.$comment.append(container2)
-            printComments(commentarr[i].subComment,container2)
+            printComments(commentarr[i].subComment, container2)
         }
     }
 
