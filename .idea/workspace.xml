@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="70d13c3c-76f4-41d2-9a5f-4f090c6fcff2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/channel.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/channel.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/channel.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/header.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/header.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/notes.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/header.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/header.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.js" afterDir="false" />
     </list>
@@ -68,7 +63,8 @@
       <workItem from="1573593579432" duration="1617000" />
       <workItem from="1573601381638" duration="436000" />
       <workItem from="1573654454103" duration="654000" />
-      <workItem from="1573688131976" duration="6531000" />
+      <workItem from="1573688131976" duration="17194000" />
+      <workItem from="1573708883658" duration="158000" />
     </task>
     <task id="LOCAL-00001" summary="nr2">
       <created>1573494691463</created>
@@ -91,7 +87,14 @@
       <option name="project" value="LOCAL" />
       <updated>1573506752194</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="wrokin html">
+      <created>1573694676372</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1573694676373</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -114,7 +117,8 @@
     <MESSAGE value="nr2" />
     <MESSAGE value="logic for comments in local without firebasse" />
     <MESSAGE value="with firework" />
-    <option name="LAST_COMMIT_MESSAGE" value="with firework" />
+    <MESSAGE value="wrokin html" />
+    <option name="LAST_COMMIT_MESSAGE" value="wrokin html" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

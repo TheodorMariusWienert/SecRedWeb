@@ -4,7 +4,7 @@ $(document).ready(function () {
      firebase.auth().onAuthStateChanged(function (user) {
 
          //console.log(user);
-         if (true) {//Todo to if(user) zurück
+         if (user) {//Todo to if(user) zurück
 
 
              $('#LoginCon').empty();
@@ -24,10 +24,11 @@ $(document).ready(function () {
              $('#LoginCon').append('<p id="userInfo">' + name + ' ' + email + '</p>');
 
          } else {
-             console.log("no user")
+             console.log("no user");
              $('#LoginCon').empty();
              $('#LoginCon').append('<button id="LoginButtonRed"> Login</button>');
              login();
+            // createDatabaseEntryForUser();
 
          }
 
@@ -83,11 +84,53 @@ function authent() {
     });
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
-            userbool = true;
+
+
         } else {
-            userbool = false;
+          //nothing
         }
     });
 
+
+}
+function createDatabaseEntryForUser() {
+
+
+    firebase.auth().onAuthStateChanged(function (user) {
+        console.log(1);
+        if (user) {
+            console.log(2);
+            var userId = firebase.auth().currentUser.uid;
+            var useRef = firebase.database().ref('users/' + userId);
+            useRef.transaction(function (currentData) {
+                if (currentData === null) {
+                    return {
+                        channels: [],
+                        comments: [],
+                        upvotecomments: [],
+                        upvotechannel: []
+                    };
+                } else {
+                    console.log('User' + userId + ' already exists.');
+                    return; // Abort the transaction.
+                }
+            }, function (error, committed, snapshot) {
+                if (error) {
+                    console.log('Transaction failed abnormally!', error);
+                } else if (!committed) {
+                    console.log('We aborted the transaction (because ada already exists).');
+                } else {
+                    console.log('User' + userId + ' ada added!');
+                }
+                console.log("Ada's data: ", snapshot.val());
+            });
+        } else {
+            console.log("no user");
+            alert("Please Login");
+
+
+        }
+
+    })
 
 }
