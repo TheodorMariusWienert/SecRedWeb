@@ -49,6 +49,7 @@ $(document).ready(function () {
 
     goThroughComments();
     //$("#header").load("header.html");
+    //Heys
 
 });
 
