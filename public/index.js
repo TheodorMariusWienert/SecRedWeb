@@ -47,39 +47,14 @@ var sampleChannel = {
 
 var userbool = false;
 $(document).ready(function () {
-    firebase.auth().onAuthStateChanged(function (user) {
-        //console.log(user);
-        if (user) {
+   $('#contentContainer').empty();
 
-            console.log("user")
-            $('#LoginCon').empty();
-            $('#LoginCon').append('<button id="Logout"> Logout</button>');
+   //todo someweher  $('#contentContainer').append(' <form action="index.html"> Channel Name:<br>  <input type="text" name="firstname" value="Channel Name"> <br> <br> <input type="submit" value="Submit"> </form>');
 
-            logout();
-
-            var name, email;
-
-            if (user != null) {
-                name = user.displayName;
-                email = user.email;
-
-
-            }
-            $('#LoginCon').append('<p id="userInfo">' + name + ' ' + email + '</p>');
-
-        } else {
-            console.log("no user")
-            $('#LoginCon').empty();
-            $('#LoginCon').append('<button id="LoginButtonRed"> Login</button>');
-            login();
-
-        }
 
         console.log(sampleJSon);
         printChannels();
-
-
-    });
+    //To$("#header").load("header.html");
 });
 
 function printChannels() {
@@ -104,9 +79,22 @@ let Channel = function (name) {
     this.generateEl = function () {
         this.$element = $('<li id="Channel">' + this.name + '</li>');
         this.$element.on('click', function () {
-            console.log("Click on " + name);
-            goThroughComments();
+            console.log("click on" + name);
+            location.href='channel.html?channelid='+name;
+
         });
+        let upButton = $('<button class="UpButton">+</button>');
+        upButton.on('click', function () {
+            console.log("plus" );
+
+        });
+        this.$element.append(upButton);
+        let downButton = $('<button class="UpButton">-</button>');
+        downButton.on('click', function () {
+            console.log("minus" );
+
+        });
+        this.$element.append(downButton);
 
 
     };
@@ -114,106 +102,28 @@ let Channel = function (name) {
 
     this.generateEl();
 };
-let Comment = function (data) {
-    this.generateEl = function () {
-        this.$comment = $('<div>' + data.content + ' ' + data.author + '</div>')
-        let upButton = $('<button class="UpButton">+</button>');
-        upButton.on('click', function () {
-            console.log("plus" + data.id);
-
-        });
-        this.$comment.append(upButton);
-        let downButton = $('<button class="UpButton">-</button>');
-        downButton.on('click', function () {
-            console.log("minus" + data.id);
-
-        });
-        this.$comment.append(downButton)
-    }
-    this.generateEl();
 
 
-}
+function createNewChannel(email, title, body) {
+    // A post entry.
+    var postData = {
 
-function goThroughComments() {
-    $('#contentContainer').empty();
-    let commentarr = sampleChannel.subComment
-    let container = $('#contentContainer');
-    printComments(commentarr, container)
+        userEmail: email,
+        title: title,
+        body: body,
+        votes: 0,
 
-}
+    };
 
-function printComments(commentarr, container) {
-    console.log(commentarr);
-    console.log(container);
-    for (let i in commentarr) {
-        console.log(commentarr[i].content);
-        let tempComment = new Comment(commentarr[i]);
-        container.append(tempComment.$comment);
-        if (commentarr[i].subComment.length) {
-            let container2 = $('<div class="SubComments">' + this.name + '</div>');
-            tempComment.$comment.append(container2)
-            printComments(commentarr[i].subComment, container2)
-        }
-    }
+    // Get a key for a new Post.
+    var newPostKey = firebase.database().ref().child('channels').push().key;
 
+    // Write the new post's data simultaneously in the posts list and the user's post list.
+    var updates = {};
+    updates['/channels/' + newPostKey] = postData;
+    //updates['/user-posts/' + uid + '/' + newPostKey] = postData;
 
-}
-
-function login() {
-
-    $('#LoginButtonRed').click(function () {
-        authent();
-    });
-}
-
-function logout() {
-    $('#Logout').click(function () {
-        console.log("LogoutButton")
-        firebase.auth().signOut().then(function () {
-            console.log("Logout Successful");
-        }).catch(function (error) {
-            console.log("Error :");
-            console.log(error);
-        });
-
-    })
-
-}
-
-function authent() {
-    console.log("redirect Login")
-    var provider = new firebase.auth.GoogleAuthProvider();
-    firebase.auth().signInWithRedirect(provider);
-    firebase.auth().getRedirectResult().then(function (result) {
-        if (result.credential) {
-            // This gives you a Google Access Token. You can use it to access the Google API.
-            var token = result.credential.accessToken;
-            // ...
-        }
-
-
-        // The signed-in user info.
-        var user = result.user;
-    }).catch(function (error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        // The email of the user's account used.
-        var email = error.email;
-        // The firebase.auth.AuthCredential type that was used.
-        var credential = error.credential;
-        // ...
-    });
-    firebase.auth().onAuthStateChanged(function (user) {
-        if (user) {
-            userbool = true;
-        } else {
-            userbool = false;
-        }
-    });
-
-
+    return firebase.database().ref().update(updates);
 }
 
 
