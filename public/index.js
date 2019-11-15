@@ -1,8 +1,8 @@
 var sampleJSon = {
 
-    "Channels": [{"name": "Number1", "date": "timestamp"},
-        {"name": "Number2", "date": "timestamp"},
-        {"name": "Number3", "date": "timestamp"}]
+    "Channels": [{"key": "Number1","body":"channel1", "time": "timestamp","totalVotes":0,},
+        {"key": "Number2","body":"channel2", "time": "timestamp","totalVotes":53,},
+        {"key": "Number3","body":"channel3", "time": "timestamp","totalVotes":-50,},]
 };
 var sampleChannel = {
 
@@ -53,7 +53,7 @@ $(document).ready(function () {
 
 
         console.log(sampleJSon);
-        printChannels();
+        printChannels();/*
      //$("#header").load("header.html");
     firebase.auth().onAuthStateChanged(function (user) {
 
@@ -87,7 +87,7 @@ $(document).ready(function () {
 
 
 
-    });
+    });*/
 });
 
 function printChannels() {
@@ -97,37 +97,38 @@ function printChannels() {
     console.log(channelarr);
     for (let i in channelarr) {
         console.log(channelarr[i].name)
-        let channel = new Channel(channelarr[i].name);
+        let channel = new Channel(channelarr[i]);
         $("#contentContainer").append(channel.$element);
     }
 
 
 }
 
-let Channel = function (name) {
+let Channel = function (data) {
 
-    this.name = name;
-    console.log("Name of chanell" + this.name);
-
+    let key = data.key;
+    let time=data.time;
+    let totalVotes=data.totalVotes;
+    let body=data.body
+    console.log("Name of chanell" + body);
     this.generateEl = function () {
-        this.$element = $('<li id="Channel">' + this.name + '</li>');
-        this.$element.on('click', function () {
-            console.log("click on" + name);
-            location.href='channel.html?channelid='+name;
+        this.$element=$('<div class="ChannelDiv"></div>');
+        channelDiv = $('<div class="Channel">' +body+ time+totalVotes+ '</div>');
+        channelDiv.on('click', function () {
+            console.log(key);
+            //location.href='channel.html?channelid='+key;
 
         });
-        let upButton = $('<button class="UpButton">+</button>');
-        upButton.on('click', function () {
-            console.log("plus" );
-
+        this.$element.append(channelDiv)
+        let radioGroup=$('<div class="RadioGroup"></div>');
+        radioGroup.append('<input type="radio"   class="upBut" name="'+key+'" value=1 /> <label for="up">Up</label>');
+        radioGroup.append('<input type="radio"   class="downBut" name="'+key+'" value=-1> <label for="down">Down</label>');
+        $( radioGroup).click(function() {
+            console.log(key);
+           console.log($('input[name='+key+']:checked').val());
         });
-        this.$element.append(upButton);
-        let downButton = $('<button class="UpButton">-</button>');
-        downButton.on('click', function () {
-            console.log("minus" );
+        this.$element.append(radioGroup);
 
-        });
-        this.$element.append(downButton);
 
 
     };
