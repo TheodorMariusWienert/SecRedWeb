@@ -226,7 +226,7 @@ exports.updateCommentTotalVoteUpdater = functions.database.ref('/comments/{key}/
             return result;
         });
             if(parentKey===false)
-            {//TODO machen
+            {//TODO machenn
 
             }
             else{
