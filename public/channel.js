@@ -66,7 +66,7 @@ $(document).ready(function () {
             // createNewChannel();
             $('#createCommentContainer').append(' <div >\n' +
                 'Comment: <input class="createComment" id="commentBody" type="text" placeholder="Comment name" value=""><br>\n' +
-                '<button class="createCommentButton" id="createComment" >Create Channel</button>\n' +
+                '<button class="createCommentButton" id="createComment" >Create Comment</button>\n' +
                 '</div>');
             $("#createComment").click(function(){
                 let val =$('#commentBody').val();
@@ -168,55 +168,54 @@ let Comment = function (data,commentKey) {
     console.log("Name of comment" + this.body);
     this.generateEl = function () {
         this.$element=$('<div class="comment" id="'+this.key+'"></div>');
-        let commentDiv = $('<div class="CommentDiv">' +this.body+',time: '+this.time+ ', author:'+this.author+'</div>');
-        let voteDiv=$('<div id="votes"> votes: '+this.totalVotes+'</div>');
+        this.commentDiv = $('<div class="CommentDiv">' +this.body+',time: '+this.time+ ', author:'+this.author+'</div>');
+        this.voteDiv=$('<div id="votes"> votes: '+this.totalVotes+'</div>');
         let x =this;
 
 
 
+        this.$element.append(this.commentDiv);
+        this.$element.append(this.voteDiv);
+        this.subs=$('<div class="subs"> </div>');
+        this.$element.append(this.subs);
 
 
 
-
-        this.$element.append(commentDiv);
-        this.$element.append(voteDiv);
-        let subs=$('<div class="subs"> </div>');
-        this.$element.append(subs);
-
-
-
-        let radioGroup=$('<div class="RadioGroup"></div>');
-        radioGroup.append('<input type="radio"   class="upBut" name="'+this.key+'" value=1 /> <label for="up">Up</label>');
-        radioGroup.append('<input type="radio"   class="downBut" name="'+this.key+'" value=-1> <label for="down">Down</label>');
-        commentDiv.on('click', function () {
+        this.radioGroup=$('<div class="RadioGroup"></div>');
+        this.radioGroup.append('<input type="radio"   class="upBut" name="'+this.key+'" value=1 /> <label for="up">Up</label>');
+        this.radioGroup.append('<input type="radio"   class="downBut" name="'+this.key+'" value=-1> <label for="down">Down</label>');
+        this.commentDiv.one('click', function () {
             console.log("try for comments"+x.key);
-            subs.empty();
-            let cC=$('<input class="createComment" id="'+x.key+'Input" type="text" placeholder="Comment name" value=""><br>\n</div>');
+            x.subs.empty();
+            x.cC=$('<input class="createComment" id="'+x.key+'Input" type="text" placeholder="Comment name" value=""><br>\n</div>');
 
-            let button=$('<button class="createCommentButton" id="createComment" >Answer</button>\n');
+            x.button=$('<button class="createCommentButton" id="createComment" >Answer</button>\n');
 
 
-            x.$element.append(cC);
-            button.on('click', function () {
+            x.$element.append(x.cC);
+            x.button.on('click', function () {
 
                 console.log(x.key);
 
                 let text= $('#'+x.key+'Input').val();
                 console.log( ('#'+x.key+'Input'));
                 console.log(text);
-                $('#'+x.key+'Input').empty();
+                x.cC.empty();
                 createNewComment(x.key,text);
 
 
             });
-            x.$element.append(button);
+            x.$element.append(x.button);
             //todo gucken ob er ab hier schon listende
             getComments(x.key);
+            x.commentDiv.on('click', function () {
+                x.subs.fadeOut();
+            })
 
 
 
         });
-        $(radioGroup).on('click',function() {
+       this.radioGroup.on('click',function() {
             firebase.auth().onAuthStateChanged(function (user) {
 
                 //console.log(user);
@@ -294,7 +293,7 @@ function createNewComment(parentKey,val) {//TODO
 
 }
 function getComments(tempKey) {
-    var channelsO = firebase.database().ref().child('comments/'+tempKey+'/subComments/');
+    var commentPath = firebase.database().ref().child('comments/'+tempKey+'/subComments/');
     /*
         channelsO.once('value').then(function (snapshot){
            console.log(snapshot.val());
@@ -302,7 +301,7 @@ function getComments(tempKey) {
 
      */
 
-    channelsO.on('child_added', function(data) {
+    commentPath.on('child_added', function(data) {
 
         console.log(data.key);
         printComments(data.val(),data.key)
@@ -313,7 +312,7 @@ function getComments(tempKey) {
 
     });
 
-    channelsO.on('child_changed', function(data) {
+    commentPath.on('child_changed', function(data) {
         console.log(data.val());
         console.log(commentArr);
         let tempVotes=data.val().totalVotes;
@@ -332,7 +331,7 @@ function getComments(tempKey) {
 
     });
 
-    channelsO.on('child_removed', function(data) {
+    commentPath.on('child_removed', function(data) {
         console.log(data);
         //TODO remove button action
     });
