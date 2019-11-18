@@ -38,22 +38,26 @@ var sampleChannel = {
                         }
                     ]
             },
+
+
             {"content": "4", "id": "4", "author": "ttt", "date": "timestamp", "votes": "0", "subComment": []},
         ]
 
 
     }
 ;
+var channelArr = new Array();
 
 
 $(document).ready(function () {
    $('#contentContainer').empty();
 
-   //todo someweher  $('#contentContainer').append(' <form action="index.html"> Channel Name:<br>  <input type="text" name="firstname" value="Channel Name"> <br> <br> <input type="submit" value="Submit"> </form>');
 
 
-        console.log(sampleJSon);
-        printChannels();/*
+
+
+       // getChannels();
+
      //$("#header").load("header.html");
     firebase.auth().onAuthStateChanged(function (user) {
 
@@ -63,6 +67,15 @@ $(document).ready(function () {
 
             $('#LoginCon').empty();
             $('#LoginCon').append('<button id="Logout"> Logout</button>');
+           // createNewChannel();
+            $('#createChannelContainer').append(' <div >\n' +
+                'Channel name: <input id="channelBody" type="text" placeholder="Channel name" value=""><br>\n' +
+                '<button id="submitChannel" >Create Channel</button>\n' +
+                '</div>');
+            $("#submitChannel").click(function(){
+                createNewChannel()
+            });
+
 
 
 
@@ -72,8 +85,8 @@ $(document).ready(function () {
                 name = user.displayName;
                 email = user.email;
 
-
             $('#LoginCon').append('<p id="userInfo">' + name + ' ' + email + '</p>');
+
 
         } else {
             console.log("no user");
@@ -87,50 +100,115 @@ $(document).ready(function () {
 
 
 
-    });*/
+    });
+    getChannels()
+
+
 });
 
-function printChannels() {
+
+function printChannels(data,key) {
+  /*  $('#contentContainer').empty();
     console.log("printChannelsFunct");
 
-    let channelarr = sampleJSon.Channels;
+    let channelarr = arr;
+    let keys = Object.keys(arr);
+    console.log("channelarr");
     console.log(channelarr);
-    for (let i in channelarr) {
-        console.log(channelarr[i].name)
-        let channel = new Channel(channelarr[i]);
-        $("#contentContainer").append(channel.$element);
+    console.log("keys");
+    console.log(keys);
+    for (let i = 0; i < keys.length; i++) {
+        console.log(channelarr[keys[i]]);
+        let channel = new Channel(channelarr[keys[i]],keys[i]);
+       $("#contentContainer").append(channel.$element);
     }
+*/
+    console.log("Print")
+    console.log(data);
+    console.log(key);
+    let channel = new Channel(data,key);
+    $("#contentContainer").append(channel.$element);
+    channelArr.push(channel);
+
 
 
 }
 
-let Channel = function (data) {
 
-    let key = data.key;
-    let time=data.time;
-    let totalVotes=data.totalVotes;
-    let body=data.body
-    console.log("Name of chanell" + body);
+let Channel = function (data,channelKey) {
+
+    this.key = channelKey;
+    this.time=data.time;
+    //let time="Null";
+    this.totalVotes=data.totalVotes;
+    //let totalVotes="0";
+    this.parent=data.parent;
+    this.author=data.userId;
+    //let parent="-1";
+    this.body=data.body;
+    this.nr=0;
+    console.log("Name of chanell" + this.body);
     this.generateEl = function () {
-        this.$element=$('<div class="ChannelDiv"></div>');
-        channelDiv = $('<div class="Channel">' +body+ time+totalVotes+ '</div>');
+        this.$element=$('<div class="ChannelDiv" id="'+this.key+'"></div>');
+        let channelDiv = $('<div class="Channel">' +this.body+',time: '+this.time+ ', author:'+this.author+'</div>');
+        let voteDiv=$('<div id="votes"> votes: '+this.totalVotes+'</div>');
+        let x =this;
+
         channelDiv.on('click', function () {
-            console.log(key);
-            //location.href='channel.html?channelid='+key;
+            console.log(x.key);
+            location.href='channel.html?channelid='+x.key;
 
         });
-        this.$element.append(channelDiv)
+
+
+
+
+
+        this.$element.append(channelDiv);
+        this.$element.append(voteDiv);
         let radioGroup=$('<div class="RadioGroup"></div>');
-        radioGroup.append('<input type="radio"   class="upBut" name="'+key+'" value=1 /> <label for="up">Up</label>');
-        radioGroup.append('<input type="radio"   class="downBut" name="'+key+'" value=-1> <label for="down">Down</label>');
-        $( radioGroup).click(function() {
-            console.log(key);
-           console.log($('input[name='+key+']:checked').val());
+        radioGroup.append('<input type="radio"   class="upBut" name="'+this.key+'" value=1 /> <label for="up">Up</label>');
+        radioGroup.append('<input type="radio"   class="downBut" name="'+this.key+'" value=-1> <label for="down">Down</label>');
+
+        $(radioGroup).on('click',function() {
+            firebase.auth().onAuthStateChanged(function (user) {
+
+                //console.log(user);
+                if (user) {//Todo to if(user) zurück
+                    let tempvalue=parseInt($('input[name=' + x.key + ']:checked').val());
+                    console.log(tempvalue);
+                   // console.log(x.nr);
+                    if(x.nr!==tempvalue) {
+                        console.log("im if");
+                        console.log(x.key);
+
+                        x.nr = tempvalue;
+                        setVote(x.key, tempvalue, x.parent);
+                    }
+                }
+                else {
+                    alert("Login first Please")
+                    authent();
+                }
+            });
         });
+
         this.$element.append(radioGroup);
 
 
 
+
+    };
+    this.removeHtML=function(){
+        console.log("remove"+this.key);
+        let adress=$('#'+this.key);
+        adress.remove();
+    };
+    //TODO check if already liked
+    this.updateVote=function(){
+        let temp=$('#'+this.key).children();
+        let voteTemp=temp[1];//TODO aufppase
+        voteTemp.innerHTML="votes:"+this.totalVotes;//todo anppase
     };
 
 
@@ -138,26 +216,95 @@ let Channel = function (data) {
 };
 
 
-function createNewChannel(email, title, body) {
-    // A post entry.
-    var postData = {
+function createNewChannel() {
+    var channelName = $('#channelBody').val();
+    if (!channelName.replace(/\s/g, '').length||channelName===null) {
+        alert("Please enter a name")
+        return;
+    }
 
-        userEmail: email,
-        title: title,
-        body: body,
-        votes: 0,
+
+    let userId = firebase.auth().currentUser.uid;
+    // A post entry.
+    let postData = {
+
+        body: channelName,
+
 
     };
 
     // Get a key for a new Post.
-    var newPostKey = firebase.database().ref().child('channels').push().key;
+    var newPostKey = firebase.database().ref().child('users/'+userId+'/channels').push().key;
 
     // Write the new post's data simultaneously in the posts list and the user's post list.
     var updates = {};
-    updates['/channels/' + newPostKey] = postData;
-    //updates['/user-posts/' + uid + '/' + newPostKey] = postData;
+    updates['users/'+userId+'/channels/'+ newPostKey] = postData;
 
-    return firebase.database().ref().update(updates);
+
+     firebase.database().ref().update(updates);
+     $('#channelBody').val("");
+       return;
+
+}
+function getChannels() {
+    var channelsO = firebase.database().ref().child('channels');
+/*
+    channelsO.once('value').then(function (snapshot){
+       console.log(snapshot.val());
+        printChannels(snapshot.val())})*
+
+ */
+
+    channelsO.on('child_added', function(data) {
+
+        console.log(data.key);
+        printChannels(data.val(),data.key)
+       console.log(channelArr);
+        console.log(channelArr[0]);
+
+
+
+    });
+
+    channelsO.on('child_changed', function(data) {
+        console.log(data.val());
+        let tempVotes=data.val().totalVotes;
+        let tempKey=data.key;
+        channelArr.forEach(elem => {
+            if(elem.key===tempKey){
+                elem.totalVotes=tempVotes;
+                elem.updateVote();
+            }
+        })
+
+    });
+
+    channelsO.on('child_removed', function(data) {
+        console.log(data);
+        //TODO remove button action
+    });
+
+
+
+
+
+
+}
+function setVote(key,voteNr,parent) {
+    let userId = firebase.auth().currentUser.uid;
+
+
+    let postData = {
+
+        vote: voteNr,
+        parent:parent,
+
+
+    };
+    var updates = {};
+    updates['users/'+userId+'/commentVotes/'+ key] = postData;
+    firebase.database().ref().update(updates);
+
 }
 
 function login() {

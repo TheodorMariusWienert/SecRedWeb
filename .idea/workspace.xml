@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="70d13c3c-76f4-41d2-9a5f-4f090c6fcff2" name="Default Changelist" comment="">
+    <list default="true" id="70d13c3c-76f4-41d2-9a5f-4f090c6fcff2" name="Default Changelist" comment="function">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/functions/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/functions/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/channel.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/channel.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/channel.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/channel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -69,7 +72,10 @@
       <workItem from="1573753214497" duration="3886000" />
       <workItem from="1573762174935" duration="5909000" />
       <workItem from="1573780330353" duration="18648000" />
-      <workItem from="1573802443493" duration="6126000" />
+      <workItem from="1573802443493" duration="6180000" />
+      <workItem from="1573826852825" duration="623000" />
+      <workItem from="1573864225530" duration="6210000" />
+      <workItem from="1574024811862" duration="38146000" />
     </task>
     <task id="LOCAL-00001" summary="nr2">
       <created>1573494691463</created>
@@ -141,7 +147,21 @@
       <option name="project" value="LOCAL" />
       <updated>1573789599388</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="functions2">
+      <created>1573808772037</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1573808772038</updated>
+    </task>
+    <task id="LOCAL-00012" summary="function">
+      <created>1573808802126</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1573808802126</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -168,7 +188,8 @@
     <MESSAGE value="&#10;working fucntions" />
     <MESSAGE value="functions" />
     <MESSAGE value="functions2" />
-    <option name="LAST_COMMIT_MESSAGE" value="functions2" />
+    <MESSAGE value="function" />
+    <option name="LAST_COMMIT_MESSAGE" value="function" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
