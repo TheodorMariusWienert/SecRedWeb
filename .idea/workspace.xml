@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="70d13c3c-76f4-41d2-9a5f-4f090c6fcff2" name="Default Changelist" comment="last">
-      <change afterPath="$PROJECT_DIR$/public/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/functions/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/functions/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/channel.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/channel.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/channel.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/channel.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/channel.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/channel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.js" afterDir="false" />
-    </list>
+    <list default="true" id="70d13c3c-76f4-41d2-9a5f-4f090c6fcff2" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,7 +74,7 @@
       <workItem from="1574065585338" duration="814000" />
       <workItem from="1574087917112" duration="720000" />
       <workItem from="1574100971936" duration="16868000" />
-      <workItem from="1574117857625" duration="19484000" />
+      <workItem from="1574117857625" duration="19853000" />
     </task>
     <task id="LOCAL-00001" summary="nr2">
       <created>1573494691463</created>
@@ -183,7 +174,21 @@
       <option name="project" value="LOCAL" />
       <updated>1574102125504</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="done">
+      <created>1574139360206</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1574139360206</updated>
+    </task>
+    <task id="LOCAL-00016" summary="done">
+      <created>1574139380606</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1574139380606</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -213,6 +218,7 @@
     <MESSAGE value="function" />
     <MESSAGE value="working somehow" />
     <MESSAGE value="last" />
-    <option name="LAST_COMMIT_MESSAGE" value="last" />
+    <MESSAGE value="done" />
+    <option name="LAST_COMMIT_MESSAGE" value="done" />
   </component>
 </project>
