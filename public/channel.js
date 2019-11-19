@@ -78,7 +78,7 @@ function printComments(data, key) {
 
     }
     let comment = new Comment(data, key, vote);
-    
+
     let temp = $("#" + data.parent).children();
 
     let voteTemp = temp[2];//TODO aufppase
