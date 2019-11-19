@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="70d13c3c-76f4-41d2-9a5f-4f090c6fcff2" name="Default Changelist" comment="">
+    <list default="true" id="70d13c3c-76f4-41d2-9a5f-4f090c6fcff2" name="Default Changelist" comment="last">
+      <change afterPath="$PROJECT_DIR$/public/index.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Login.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/functions/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/functions/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/channel.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/channel.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/channel.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/channel.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/channel.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/channel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/header.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/header.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -23,6 +25,7 @@
       <list>
         <option value="HTML File" />
         <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -35,6 +38,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RunDashboard">
@@ -78,7 +82,8 @@
       <workItem from="1574024811862" duration="38146000" />
       <workItem from="1574065585338" duration="814000" />
       <workItem from="1574087917112" duration="720000" />
-      <workItem from="1574100971936" duration="959000" />
+      <workItem from="1574100971936" duration="16868000" />
+      <workItem from="1574117857625" duration="19484000" />
     </task>
     <task id="LOCAL-00001" summary="nr2">
       <created>1573494691463</created>
@@ -171,7 +176,14 @@
       <option name="project" value="LOCAL" />
       <updated>1574065642591</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="working somehow">
+      <created>1574102125504</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1574102125504</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -200,6 +212,7 @@
     <MESSAGE value="functions2" />
     <MESSAGE value="function" />
     <MESSAGE value="working somehow" />
-    <option name="LAST_COMMIT_MESSAGE" value="working somehow" />
+    <MESSAGE value="last" />
+    <option name="LAST_COMMIT_MESSAGE" value="last" />
   </component>
 </project>

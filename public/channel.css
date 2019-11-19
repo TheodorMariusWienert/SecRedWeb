@@ -1,5 +1,36 @@
 
-.comment{
+.comment {
     margin-left: 20px;
     border-left: 6px solid red;
+}
+.conDiv{
+    border-radius: 24px;
+    background: #888888;
+    margin: 12px;
+    padding: 18px;
+
+}
+#subCon{
+    border-left: 6px solid red;
+    margin-left: 10px;
+}
+#homeButton{
+    font-size: 50px;
+}
+#homeButton:hover{
+    font-size: 60px;
+    color:dimgray;
+}
+.CommentDiv:hover{
+    padding: 6px;
+    border-radius: 12px;
+    background-color: lightgray;
+    transition-delay: 0.1s;
+}
+
+.time{
+    font-size: 10px;
+}
+.author{
+    font-size: 10px;
 }
